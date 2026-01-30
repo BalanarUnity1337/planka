@@ -1,6 +1,9 @@
 services:
   planka:
-    image: ghcr.io/plankanban/planka:2.0.0-rc.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: planka-prod
     restart: on-failure
     volumes:
       - favicons:/app/public/favicons
@@ -47,12 +50,12 @@ services:
       # - DEFAULT_LANGUAGE=en-US
 
       # Do not comment out DEFAULT_ADMIN_EMAIL if you want to prevent this user from being edited/deleted
-      # - DEFAULT_ADMIN_EMAIL=demo@demo.demo
-      # - DEFAULT_ADMIN_PASSWORD=demo
+      - DEFAULT_ADMIN_EMAIL=demo@demo.demo
+      - DEFAULT_ADMIN_PASSWORD=demo
       # Optionally store in secrets - then DEFAULT_ADMIN_PASSWORD should not be set
       # - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/default_admin_password
-      # - DEFAULT_ADMIN_NAME=Demo Demo
-      # - DEFAULT_ADMIN_USERNAME=demo
+      - DEFAULT_ADMIN_NAME=Demo Demo
+      - DEFAULT_ADMIN_USERNAME=demo
 
       # - INTERNAL_ACCESS_TOKEN=
       # - STORAGE_LIMIT=
